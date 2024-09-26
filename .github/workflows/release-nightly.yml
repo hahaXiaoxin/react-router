@@ -30,7 +30,7 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: dev
+          ref: main
           # checkout using a custom token so that we can push later on
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
