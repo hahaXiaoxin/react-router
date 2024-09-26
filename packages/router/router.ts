@@ -110,7 +110,7 @@ export interface Router {
    * initial data fetches.  Returns a function to cleanup listeners and abort
    * any in-progress loads
    */
-  initialize(): Router;
+    initialize(): Promise<Router>;
 
   /**
    * @internal
@@ -1038,7 +1038,7 @@ export function createRouter(init: RouterInit): Router {
   // Initialize the router, all side effects should be kicked off from here.
   // Implemented as a Fluent API for ease of:
   //   let router = createRouter(init).initialize();
-  function initialize() {
+  async function initialize() {
     // If history informs us of a POP navigation, start the navigation but do not update
     // state.  We'll update our own state once the navigation completes
     unlistenHistory = init.history.listen(
@@ -1120,7 +1120,7 @@ export function createRouter(init: RouterInit): Router {
     // resolved prior to router creation since we can't go into a fallbackElement
     // UI for SSR'd apps
     if (!state.initialized) {
-      startNavigation(HistoryAction.Pop, state.location, {
+      await startNavigation(HistoryAction.Pop, state.location, {
         initialHydration: true,
       });
     }

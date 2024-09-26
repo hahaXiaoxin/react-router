@@ -21,7 +21,6 @@ jobs:
   # release processes
   nightly:
     name: 🌒 Nightly Release
-    if: github.repository == 'remix-run/react-router'
     runs-on: ubuntu-latest
     outputs:
       # allows this to be used in the `comment` job below - will be undefined

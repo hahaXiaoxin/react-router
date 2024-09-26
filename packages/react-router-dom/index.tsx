@@ -266,7 +266,7 @@ interface DOMRouterOpts {
 export function createBrowserRouter(
   routes: RouteObject[],
   opts?: DOMRouterOpts
-): RemixRouter {
+): Promise<RemixRouter> {
   return createRouter({
     basename: opts?.basename,
     future: {
@@ -286,7 +286,7 @@ export function createBrowserRouter(
 export function createHashRouter(
   routes: RouteObject[],
   opts?: DOMRouterOpts
-): RemixRouter {
+): Promise<RemixRouter> {
   return createRouter({
     basename: opts?.basename,
     future: {
